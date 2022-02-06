@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  mongo-db:
+    image: mongo
+    ports:
+      - '27017'
+
+  server:
+    build: .
+    image: infratute/mean-stack-backend:REL-0.0.1
+    ports:
+      - '3000:3000'
+    links:
+      - mongo-db
+
+  client:
+    build: client
+    image: infratute/mean-stack-frontend:REL-0.0.1
+    ports:
+      - '80:80'
